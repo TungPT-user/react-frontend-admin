@@ -1,0 +1,10 @@
+a {
+  text-decoration: none !important;
+  color: black !important;
+}
+
+.nav-menu {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  height: 730px;
+}
