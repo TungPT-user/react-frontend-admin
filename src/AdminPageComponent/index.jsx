@@ -1,6 +1,7 @@
 import MenuComponent from "./MenuComponent";
 import HeaderAdminComponent from "./HeaderAdminPageComponent";
 import Board from "../Board";
+import Chart from "../Charts";
 import "bootstrap/dist/css/bootstrap.css";
 const AdminPageComponent = () => {
   return (
@@ -22,6 +23,7 @@ const AdminPageComponent = () => {
         >
           <Board></Board>
         </div>
+        {/* <Chart /> */}
       </div>
     </>
   );

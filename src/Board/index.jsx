@@ -1,23 +1,27 @@
 import "bootstrap/dist/css/bootstrap.css";
 import { ProductContext } from "../Data/ProductContext";
 import { useContext, useEffect, useState } from "react";
-const Board = (products) => {
+import { deletePhones, deleteData } from "../Data/Services";
+const Board = () => {
   const productCtx = useContext(ProductContext);
 
-  const [productsList, setProductsList] = useState([]);
+  const [phones, setPhones] = useState({});
+  const handleDeleteProduct = async (productToDelete) => {
+    try {
+      const deletedData = await deleteData(productToDelete.id);
 
-  useEffect(() => {
-    let updatedProductsList = [];
-    if (products === "laptops") {
-      updatedProductsList = productCtx.laptops;
-    } else if (products === "headphones") {
-      updatedProductsList = productCtx.headphones;
-    } else {
-      updatedProductsList = productCtx.phones;
+      if (deletedData.success) {
+        const updatedProducts = productCtx.phones.filter(
+          (product) => product.id !== productToDelete.id
+        );
+        productCtx.setPhones(updatedProducts);
+      } else {
+        console.log("Xóa sản phẩm không thành công.");
+      }
+    } catch (error) {
+      console.error("Lỗi khi xóa sản phẩm:", error);
     }
-    setProductsList(updatedProductsList);
-  }, [products, productCtx.laptops, productCtx.headphones, productCtx.phones]);
-
+  };
   return (
     <>
       <div className="container mt-3">
@@ -44,6 +48,37 @@ const Board = (products) => {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>..............</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <h2>Phones</h2>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Brand</th>
+              <th>IMG</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {productCtx.phones.map((product) => (
+              <tr>
+                <td>{product.id}</td>
+                <td>{product.brand}</td>
+                <td>
+                  <img src={product.img1} alt="" />
+                </td>
+                <td>{product.name}</td>
+                <td>{product.price}</td>
+                <td>
+                  <button onClick={() => handleDeleteProduct(product)}>
+                    DEL
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

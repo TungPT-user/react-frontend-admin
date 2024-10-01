@@ -20,3 +20,16 @@ export async function getPhones() {
 export async function getHeadphones() {
   return getData("/headphones");
 }
+
+export async function deleteData(id) {
+  const response = await fetch(SERVER_API + { id }, {
+    method: "DELETE",
+  });
+
+  const data = await response.json();
+  return data;
+}
+
+export async function deletePhones(id) {
+  return deleteData("/phones" + { id });
+}
