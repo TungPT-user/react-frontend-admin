@@ -110,7 +110,7 @@ const Board = () => {
                 <td>{product.id}</td>
                 <td>{product.brand}</td>
                 <td>
-                  <img src={product.img1} alt="" />
+                  <img src={product.img1} alt="" style={{width: "150px", height: "150px"}}/>
                 </td>
                 <td>{product.name}</td>
                 <td>{product.price}</td>

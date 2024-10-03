@@ -9,13 +9,23 @@ const AddProductForm = ({ setShowForm }) => {
     price: "",
     img: "",
     brand: "",
-    descripstion: "",
+    description: "",
   });
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    const isValidImageUrl = (url) => {
+      return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+    };
+
+    if (name === "img" && !isValidImageUrl(value)) {
+      console.log("Vui lòng nhập một URL hình ảnh hợp lệ.");
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
   const handleSubmit = async () => {
     try {
@@ -23,6 +33,14 @@ const AddProductForm = ({ setShowForm }) => {
       console.log("Product added successfully:", data);
       setShowForm(false);
       rerenderPage();
+      setFormData({ 
+        id: "",
+        name: "",
+        price: "",
+        img: "",
+        brand: "",
+        description: "",
+      });
     } catch (error) {
       console.error("Error adding product:", error);
     }
@@ -40,19 +58,28 @@ const AddProductForm = ({ setShowForm }) => {
               class="form-control"
               placeholder="ID"
               aria-label="City"
+               name="id"
               onChange={handleChange}
             />
             <input
-              type="text"
-              class="form-control"
-              placeholder="IMG"
-              aria-label="City"
-              onChange={handleChange}
+            type="text"
+            className="form-control"
+            placeholder="IMG URL"
+            name="img"
+            onChange={handleChange}
+          />
+          {formData.img && (
+            <img
+              src={formData.img}
+              alt="Product Image"
+              style={{ maxWidth: "100px", maxHeight: "100px" }}
             />
+          )}
             <input
               type="text"
               class="form-control"
               placeholder="Brand"
+               name="brand"
               aria-label="City"
               onChange={handleChange}
             />
@@ -60,12 +87,14 @@ const AddProductForm = ({ setShowForm }) => {
               type="text"
               class="form-control"
               placeholder="Name"
+               name="name"
               aria-label="City"
               onChange={handleChange}
             />
             <input
               type="text"
               class="form-control"
+               name="price"
               placeholder="Price"
               aria-label="City"
               onChange={handleChange}

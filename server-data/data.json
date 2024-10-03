@@ -1,18 +1,9 @@
 {
   "laptops": [
     {
-      "id": "1",
-      "brand": "2",
-      "name": "3",
-      "price": "4"
-    },
-    {
-      "id": "2"
-    },
-    {
       "id": "3",
       "brand": "HP",
-      "img1": "/image/Spectre x360.jpg",
+      "img1": "https://hinhnen4k.com/wp-content/uploads/2023/02/anh-gai-xinh-vn-2.jpg",
       "name": "Spectre x360",
       "price": "$1199",
       "description": "The HP Spectre x360 is a versatile 2-in-1 laptop with a sleek design and long battery life."
@@ -56,30 +47,9 @@
       "img1": "/image/Swift 5.png",
       "price": "$999",
       "description": "The Acer Swift 5 is a lightweight and portable laptop with a high-resolution display."
-    },
-    {
-      "id": "",
-      "name": "",
-      "price": "",
-      "img": "",
-      "brand": "",
-      "descripstion": "",
-      "": "123"
-    },
-    {
-      "id": "",
-      "name": "",
-      "price": "",
-      "img": "",
-      "brand": "",
-      "descripstion": "",
-      "": "123"
     }
   ],
   "phones": [
-    {
-      "id": "1"
-    },
     {
       "id": "2",
       "brand": "iphone",
