@@ -1,9 +1,16 @@
 import MenuComponent from "./MenuComponent";
 import HeaderAdminComponent from "./HeaderAdminPageComponent";
+import { useState } from "react";
 import Board from "../Board";
-import Chart from "../Charts";
+// import { Chart } from "chart.js";
+import AddProductForm from "../UI/UX/PostForm";
 import "bootstrap/dist/css/bootstrap.css";
 const AdminPageComponent = () => {
+  const [showForm, setShowForm] = useState(false);
+
+  const handleCreateClick = () => {
+    setShowForm(true);
+  };
   return (
     <>
       <div className="container-fluid">
@@ -23,7 +30,14 @@ const AdminPageComponent = () => {
         >
           <Board></Board>
         </div>
-        {/* <Chart /> */}
+        <div>
+          {showForm ? (
+            <AddProductForm setShowForm={setShowForm} />
+          ) : (
+            <button onClick={handleCreateClick}>ADD PRODUCT</button>
+          )}
+        </div>
+        <div>{/* <Chart /> */}</div>
       </div>
     </>
   );

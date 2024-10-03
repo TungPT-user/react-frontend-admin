@@ -1,0 +1,12 @@
+.container-form {
+  background-color: #ececec;
+  width: 600px;
+  height: auto;
+}
+
+div input {
+  margin-left: 30%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
